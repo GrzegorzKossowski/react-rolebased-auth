@@ -34,7 +34,7 @@ export const router = createBrowserRouter(
             >
                 <Route
                     path={LINKS.COMMON}
-                    element={<>Author, Editor, Manager, Admin</>}
+                    lazy={() => import('../pages/CommonPage')}
                 />
             </Route>
             <Route
@@ -50,19 +50,28 @@ export const router = createBrowserRouter(
             >
                 <Route
                     path={LINKS.INTRANET}
-                    element={<>Editor, Manager, Admin</>}
+                    lazy={() => import('../pages/IntranetPage')}
                 />
             </Route>
             <Route element={<RequireAuth allowedRoles={[ROLES.EDITOR]} />}>
-                <Route path={LINKS.EDITOR} element={<>Editor</>} />
+                <Route
+                    path={LINKS.EDITOR}
+                    lazy={() => import('../pages/EditorPage')}
+                />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.MANAGER]} />}>
-                <Route path={LINKS.MANAGER} element={<>Manager</>} />
+                <Route
+                    path={LINKS.MANAGER}
+                    lazy={() => import('../pages/ManagerPage')}
+                />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
-                <Route path={LINKS.ADMIN} element={<>Admin</>} />
+                <Route
+                    path={LINKS.ADMIN}
+                    lazy={() => import('../pages/AdminPage')}
+                />
             </Route>
 
             <Route path='*' element={<>Missing</>} />

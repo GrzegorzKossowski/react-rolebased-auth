@@ -3,5 +3,8 @@
 @tailwind utilities;
 
 .link {
-  @apply hover:text-yellow-500 font-bold text-xl border-b-orange-300 border-b
+    @apply text-slate-200 hover:text-yellow-500 font-bold text-xl border-b-orange-300 border-b;
+}
+.allowed {
+    @apply text-slate-600;
 }

@@ -3,7 +3,9 @@ import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 export const Component = () => {
     return (
         <section>
-            Manager Page
+            <p className='text-4xl'>
+                Welcome to MANAGER page. Access is available to ADMIN role.
+            </p>
         </section>
     );
 };

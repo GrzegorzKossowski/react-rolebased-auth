@@ -3,7 +3,9 @@ import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 export const Component = () => {
     return (
         <section>
-            Editor Page
+            <p className='text-4xl'>
+                Welcome to EDITOR page. Access is available to EDITOR role.
+            </p>
         </section>
     );
 };

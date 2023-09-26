@@ -1,7 +1,14 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 export const Component = () => {
-    return <section>Common Page Author, Editor, Manager, Admin</section>;
+    return (
+        <section>
+            <p className='text-4xl'>
+                Welcome to COMMON page. Access is available to Author, Editor,
+                Manager, Admin role.
+            </p>
+        </section>
+    );
 };
 
 Component.displayName = 'CommonPage';
