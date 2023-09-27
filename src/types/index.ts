@@ -13,7 +13,7 @@ export type UserAuthType = UserType | {};
 
 export type AuthType = {
     auth: UserType;
-    setAuth: React.Dispatch<React.SetStateAction<UserType>>;
+    setAuth: React.Dispatch<React.SetStateAction<UserType | {}>>;
 };
 
 export enum ROLES {

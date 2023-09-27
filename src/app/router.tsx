@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import {
     Route,
     createBrowserRouter,
@@ -7,15 +8,20 @@ import RootLayout from './RootLayout';
 import { ROLES } from '../types';
 import RequireAuth from '../components/RequireAuth';
 import { LINKS } from '../config/constants';
+import LoginPage from '../pages/LoginPage';
+import PublicPage from '../pages/PublicPage';
+
+const CommonPage = React.lazy(() => import('../pages/CommonPage'));
+const IntranetPage = React.lazy(() => import('../pages/IntranetPage'));
+const AdminPage = React.lazy(() => import('../pages/AdminPage'));
+const EditorPage = React.lazy(() => import('../pages/EditorPage'));
+const ManagerPage = React.lazy(() => import('../pages/ManagerPage'));
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<RootLayout />}>
-            <Route index={true} lazy={() => import('../pages/PublicPage')} />
-            <Route
-                path={LINKS.LOGIN}
-                lazy={() => import('../pages/LoginPage')}
-            />
+            <Route index={true} element={<PublicPage />} />
+            <Route path={LINKS.LOGIN} element={<LoginPage />} />
             <Route path={LINKS.REGISTER} element={<>RegisterPage</>} />
             <Route path={LINKS.UNAUTHORIZED} element={<>Unauthorized</>} />
 
@@ -34,7 +40,12 @@ export const router = createBrowserRouter(
             >
                 <Route
                     path={LINKS.COMMON}
-                    lazy={() => import('../pages/CommonPage')}
+                    element={
+                        <Suspense
+                            fallback={<>Loading...</>}
+                            children={<CommonPage />}
+                        />
+                    }
                 />
             </Route>
             <Route
@@ -50,27 +61,48 @@ export const router = createBrowserRouter(
             >
                 <Route
                     path={LINKS.INTRANET}
-                    lazy={() => import('../pages/IntranetPage')}
+                    element={
+                        <Suspense
+                            fallback={<>Loading...</>}
+                            children={<IntranetPage />}
+                        />
+                    }
                 />
             </Route>
             <Route element={<RequireAuth allowedRoles={[ROLES.EDITOR]} />}>
                 <Route
                     path={LINKS.EDITOR}
-                    lazy={() => import('../pages/EditorPage')}
+                    // lazy={() => import('../pages/EditorPage')}
+                    element={
+                        <Suspense
+                            fallback={<>Loading...</>}
+                            children={<EditorPage />}
+                        />
+                    }
                 />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.MANAGER]} />}>
                 <Route
                     path={LINKS.MANAGER}
-                    lazy={() => import('../pages/ManagerPage')}
+                    element={
+                        <Suspense
+                            fallback={<>Loading...</>}
+                            children={<ManagerPage />}
+                        />
+                    }
                 />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
                 <Route
                     path={LINKS.ADMIN}
-                    lazy={() => import('../pages/AdminPage')}
+                    element={
+                        <Suspense
+                            fallback={<>Loading...</>}
+                            children={<AdminPage />}
+                        />
+                    }
                 />
             </Route>
 

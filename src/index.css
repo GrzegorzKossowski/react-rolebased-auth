@@ -5,6 +5,9 @@
 .link {
     @apply text-slate-200 hover:text-yellow-500 font-bold text-xl border-b-orange-300 border-b;
 }
-.allowed {
-    @apply text-slate-600;
+.not-allowed {
+    @apply text-slate-600 pointer-events-none;
+}
+.btn {
+    @apply border py-2
 }
